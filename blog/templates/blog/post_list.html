@@ -2,7 +2,17 @@
 
 {% block content %}
 {% for post in post_list %}
-    <h1>{{post.title}}</h1>
+<div class="card mb-3">
+    <h2 class="card-header bg-dark text-white">
+        {{post.title}}
+    </h2>
+    <div class="card-body">
+        <p>{{post.created_at}}, {{post.category}}</p>
+        <a href="#!" class="btn btn-dark">続きを読む</a>
+    </div>
+</div>
+  
 {% endfor %}
+
 
 {% endblock %}
