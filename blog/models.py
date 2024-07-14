@@ -19,3 +19,12 @@ class Post(models.Model):
     def __str__(self):
         return self.title
     
+class Comment(models.Model):
+    """コメント"""
+    name=models.CharField('名前',max_length=20,default='名無し')
+    text=models.TextField('本文')
+    post=models.ForeignKey(Post,verbose_name='紐づく記事',on_delete=models.PROTECT)
+    created_at=models.DateTimeField('日付',default=timezone.now)
+    
+    def __str__(self):
+        return self.text[:10]

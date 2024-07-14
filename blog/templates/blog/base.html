@@ -30,8 +30,8 @@
             <a class="nav-link disabled" href="#">Disabled</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="{% url 'blog:index'%}">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="keyword">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
@@ -53,7 +53,12 @@
       </div>
 
       <div class="col-md-4">
-      <p>カテゴリー一覧</p>
+        <ul class="list-group">
+          <li class="list-group-item bg-dark text-white">カテゴリー一覧</li>
+          {% for category in category_list %}
+          <li class="list-group-item"><a href="{% url 'blog:category' category.pk %}">{{category}}</a></li>
+          {% endfor %}
+        </ul>
       </div>
     </div>
     </div>

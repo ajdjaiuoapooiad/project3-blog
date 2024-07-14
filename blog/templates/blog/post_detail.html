@@ -1,17 +1,20 @@
 {% extends 'blog/base.html' %}
 
+
 {% block content %}
-{% for post in post_list %}
 <div class="card mb-3">
     <h2 class="card-header bg-dark text-white">
         {{post.title}}
     </h2>
     <div class="card-body">
         <p>{{post.created_at}}, {{post.category}}</p>
-        <a href="{% url 'blog:detail' post.pk %}" class="btn btn-dark">続きを読む</a>
+        {{post.text |linebreaksbr |urlize}}
     </div>
 </div>
+{% for comment in post.comment_set.all %}
+<p>{{comment.name}}</p>
+<p>{{comment.text |linebreaksbr}}</p>
 {% endfor %}
-{% include 'blog/page5.html' %}
+<a class='btn btn-dark' href="{% url 'blog:comment' post.pk %}">コメント投稿ページへ</a>
 
 {% endblock %}
